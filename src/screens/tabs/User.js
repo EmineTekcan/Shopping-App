@@ -14,26 +14,31 @@ const User = () => {
   const [userName, setUserName] = useState("")
   const [userEmail, setUserEmail] = useState("")
   console.log(userName)
+
+
   useLayoutEffect(() => {
     getUser()
-  }, [])
+  })
 
   const getUser = async () => {
 
-    let userName = await AsyncStorage.getItem("USER_NAME")
-    let userEmail = await AsyncStorage.getItem("USER_EMAIL")
-    if (userName == null && userEmail == null) {
+    let name = await AsyncStorage.getItem("USER_NAME")
+    let email = await AsyncStorage.getItem("USER_EMAIL")
+    
+    if (name == null && email == null) {
       setUserName("")
       setUserEmail("")
     }
-    setUserName(userName)
-    setUserEmail(userEmail)
+    setUserName(name)
+    setUserEmail(email)
 
   }
 
   const logOut = async () => {
     AsyncStorage.removeItem('USER_NAME')
     AsyncStorage.removeItem('USER_EMAIL')
+    setUserName(null)
+    setUserEmail(null)
     navigation.navigate("SignIn")
   }
   return (

@@ -6,6 +6,7 @@ import CustomButton from '../components/CustomButton'
 import colors from '../config/colors'
 import { db } from '../../firebaseConfig'
 import { doc, setDoc, getDoc, where, query, collection, getDocs } from "firebase/firestore";
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const EditProfile = () => {
     const navigation = useNavigation()
@@ -20,11 +21,10 @@ const EditProfile = () => {
 
     useEffect(()=>{
          getUser();
-    },[])
+    })
 
     const updateUser = async () => {
         const citiesRef = collection(db, "users");
-
         await setDoc(doc(citiesRef, id), {
             name:name,
             email:email,

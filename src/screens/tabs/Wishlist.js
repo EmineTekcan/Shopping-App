@@ -2,11 +2,12 @@ import { FlatList, StyleSheet, Text, View, Pressable, Image, Dimensions } from '
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Header from '../../components/Header'
+import { useNavigation } from '@react-navigation/native'
 
 const Wishlist = () => {
 
   const { data } = useSelector((state) => state.wishlist)
-
+  const navigation=useNavigation()
   return (
     <View style={styles.container}>
       <Header title="Wishlist Items" />

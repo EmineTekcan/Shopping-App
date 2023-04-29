@@ -24,6 +24,10 @@ const Checkout = () => {
 
   const getDefaultAddress=async ()=>{
     const address= await AsyncStorage.getItem("DEFAULT_ADDRESS")
+    console.log(address)
+    if(address === null){
+      setAddress("")
+    }
     setAddress(address)
   }
 
@@ -133,7 +137,7 @@ const Checkout = () => {
            >Edit Address</Text>
         </View>
         <Text style={{ fontSize: 16, fontWeight: "400" }}>
-          {address}</Text>
+          {address === null? address: address.split(',')[1]+ "-"+address.split(',')[3]}</Text>
         <CustomButton bg={colors.green} title="Pay & Order" color={colors.light} />
       </View>
     </View>
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
   },
   settings: {
     width: width * 0.9,
-    height: height * 0.6,
+    height: height * 0.57,
     marginHorizontal: 20,
     gap: 8
   },

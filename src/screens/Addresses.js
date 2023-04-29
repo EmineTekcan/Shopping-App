@@ -25,6 +25,9 @@ const Addresses = () => {
     navigation.goBack()
   }
 
+  const deleteItem = async()=>{
+    await AsyncStorage.removeItem("DEFAULT_ADDRESS")
+  }
   console.log(data)
 
   return (
@@ -56,7 +59,10 @@ const Addresses = () => {
                   })}>
                     <Image style={{ width: 30, height: 30 }} source={require('../images/edit-tool.png')} />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => dispatch(deleteAddress(item.id))} >
+                  <TouchableOpacity onPress={() => {
+                    dispatch(deleteAddress(item.id))
+                   deleteItem()
+                  }} >
                     <Image style={{ width: 30, height: 30 }} source={require('../images/trash.png')} />
                   </TouchableOpacity>
                 </View>
